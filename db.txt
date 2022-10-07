@@ -1,0 +1,33 @@
+
+CREATE TABLE usuarios (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  usuario varchar(45) NOT NULL,
+  clave varchar(255) NOT NULL,
+  nombre varchar(200) NOT NULL,
+  apellido varchar(200) NOT NULL,
+  saldo int(10) NOT NULL,
+  billetera_id int(10) unsigned NOT NULL
+  PRIMARY KEY (id),
+  UNIQUE KEY usuario (usuario),
+    FOREIGN KEY (billetera_id) REFERENCES billetera (id),
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+CREATE TABLE establecimiento (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  nombre_comercio varchar(25) NOT NULL,
+  domicilio varchar(25) NOT NULL,
+  caja int(10) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY id (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+CREATE TABLE billetera (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  fecha_operacion date NOT NULL,
+  monto int(10) NOT NULL,
+  metodo_pago int(10) NOT NULL
+  establecimiento_id int(10) unsigned NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY id (id),
+   FOREIGN KEY (establecimiento_id) REFERENCES establecimiento (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
